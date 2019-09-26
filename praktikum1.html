@@ -10,6 +10,86 @@
     </style>
 
     <body>
-        <canvas width="800" height="450"></canvas>
+        <canvas width="800" height="450" id="canvas" ></canvas>
+
+        <script type="text/javascript">
+            var c =document.getElementById('canvas');
+            var ctx = c.getContext('2d');
+
+            //gambar balok
+            ctx.beginPath();
+            ctx.rect(20, 20, 760, 410);
+            ctx.fillStyle = "grey";
+            ctx.strokeStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+
+            //gambar lingkaran
+            ctx.beginPath();
+            ctx.arc(400, 230, 180, 0,2 * Math.PI);
+            ctx.fillStyle = "red";
+            ctx.fill()
+
+            //gambar lingkaran
+            ctx.beginPath();
+            ctx.arc(400, 230, 150, 0,2 * Math.PI);
+            ctx.fillStyle = "white";
+            ctx.fill();
+
+            //gambar lingkaran
+            ctx.beginPath();
+            ctx.arc(400, 230, 120, 0,2 * Math.PI);
+            ctx.fillStyle = "red";
+            ctx.fill();
+
+            //gambar lingkaran
+            ctx.beginPath();
+            ctx.arc(400, 230, 90, 0,2 * Math.PI);
+            ctx.fillStyle = "hsl(240, 100%, 30%)";
+            ctx.fill();
+            
+            //bintang
+            ctx.beginPath();
+            ctx.moveTo(400, 180);
+            ctx.lineTo(390, 220);
+            ctx.lineTo(350, 220);
+            ctx.lineTo(385, 235);
+            ctx.lineTo(375, 270);
+            ctx.lineTo(400, 250);
+            ctx.lineTo(425, 270);
+            ctx.lineTo(415, 235);
+            ctx.lineTo(450, 220);
+            ctx.lineTo(410, 220);
+            ctx.lineTo(400, 180);
+            ctx.fillStyle = "white";
+            ctx.strokeStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+            
+            //segitiga
+            ctx.beginPath();
+            ctx.moveTo(140, 170);
+            ctx.lineTo(70, 230);
+            ctx.lineTo(140, 290);
+            ctx.lineTo(140, 170);
+            ctx.strokeStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+
+            //segitiga
+            ctx.beginPath();
+            ctx.moveTo(660, 170);
+            ctx.lineTo(730, 230);
+            ctx.lineTo(660, 290);
+            ctx.lineTo(660, 170);
+            ctx.strokeStyle = "white";
+            ctx.fill();
+            ctx.stroke();
+
+
+            
+
+            
+        </script>
     </body>
 </html>
