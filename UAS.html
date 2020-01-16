@@ -1,0 +1,171 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>EYE</title>
+        <style>
+            canvas{
+                
+                background-image: url("asset/helloween.jfif");
+                background-size: 1700px 663px;
+            }
+
+            body{
+                margin: 0;
+                padding: 0;
+                background: #333;
+            }
+
+            .eyes{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                text-align: center;
+            }
+
+            .eye{
+                width: 200px;
+                height: 200px;
+                background: #FFE8A2;
+                border-left: 10px solid #FFCD23;
+                display: inline-block;
+                margin: 120px;
+                transform: translate(-50%,-50%) rotate(45deg);
+                border-radius: 75% 0 ;
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            .ball{
+                width: 30px;
+                height: 30px;
+                background: #222f3e;
+                border-radius: 50%;
+                border: 30px solid #A800FF;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+
+            .shut{
+                width: 300px;
+                height: 160px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%) rotate(-45deg);
+                z-index: 999;
+            }
+            .shut span{
+                display: block;
+                width: 100%;
+                height: 20%;
+                background: #FFCD23;
+                border-radius: 0 0 60% 60%;
+                transition: 0.4s all;
+            }
+            .eye:hover > .shut span{
+                height: 100%  ;
+            }
+
+            /* audio{
+                display: none;
+            } */
+        </style>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+        
+        <div class="eyes">
+            <div class="eye">
+                <div class="shut">
+                    <span></span>
+                </div>
+                <div class="ball">
+
+                </div>
+            </div>
+
+            <div class="eye">
+                <div class="shut">
+                    <span></span>
+                </div>
+                <div class="ball">
+
+                </div>
+            </div>
+        </div>
+        <script>
+            var obj=[], objNum=10, color=['maroon'];
+        function startGame() {
+            for(var i=0; i<objNum; i++)
+            {
+            var pos=Math.floor(Math.random()*8000);
+            var speed=Math.floor(Math.random()*5)+1;
+            var clr=Math.floor(Math.random()*10);
+            obj[i]= new component(10, 15, color[clr], pos, pos, speed);
+            }
+        
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas : document.getElementById("canvas"),
+            start : function() {
+                this.canvas.width = 1360;
+                this.canvas.height = 663;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.interval = setInterval(updateGameArea, 20);
+            },
+            clear : function() {
+                this.context.clearRect(800, 800, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        function component(width, height, color, x, y,speed) {
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;    
+            this.speed=speed;
+            this.update = function(){
+                ctx = myGameArea.context;
+                ctx.fillStyle = color;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+
+        function updateGameArea() {
+            myGameArea.clear();
+            for(var i=0; i<objNum;i++)
+            {
+            obj[i].y+=obj[i].speed;
+            if(obj[i].y>663){
+                var pos=Math.floor(Math.random()*1366);
+                var speed=Math.floor(Math.random()*5)+1;
+                obj[i].y=0;
+                obj[i].x=pos;
+                obj[i].speed=speed;
+            }
+            obj[i].update();
+            }    
+        }
+
+        startGame()
+
+         var ball = document.getElementsByClassName("ball");
+         document.onmousemove = function(){
+             var x = event.clientX * 100 / window.innerWidth + "%";
+             var y = event.clientY * 100 / window.innerHeight + "%";
+
+             for(var i=0; i<2; i++){
+                 ball[i].style.left = x;
+                 ball[i].style.top=y;
+             }
+         }
+        </script>
+    </body>
+</html>
